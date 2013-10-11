@@ -56,3 +56,18 @@
     colisionado con objetos de cierto tipo, no con todos los objetos.
 
 */
+
+describe ("Clase GameBoard", function(){
+    beforeEach(function(){
+	loadFixtures('index.html');
+    });
+    var miboard = new GameBoard();
+    var minave = new PlayerShip();
+	
+    it("Añade un objeto al tablero", function(){
+	miboard.add(minave);
+	
+    });
+    
+});
+
