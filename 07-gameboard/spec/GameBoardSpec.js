@@ -60,14 +60,31 @@
 describe ("Clase GameBoard", function(){
     beforeEach(function(){
 	loadFixtures('index.html');
+	canvas = $('#game')[0];
+	expect(canvas).toExist();
+
+	ctx = canvas.getContext('2d');
+	expect(ctx).toBeDefined();
+
+	
     });
+     
+it("Añade un objeto al tablero", function(){
+	spyOn(GameBoard, "add");
     var miboard = new GameBoard();
-    var minave = new PlayerShip();
+    miboard.Objects =[];
 	
-    it("Añade un objeto al tablero", function(){
-	miboard.add(minave);
+    
+
+   
+	miboard.add(ship: { sx: 0, sy: 0, w: 37, h: 42, frames: 1 });
+      waits(1);
+
+	   expect(miboard.Objects).toequal(ship);
+
+	});
 	
-    });
+
     
 });
 
