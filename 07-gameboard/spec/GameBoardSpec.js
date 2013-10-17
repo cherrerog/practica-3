@@ -58,33 +58,66 @@
 */
 
 describe ("Clase GameBoard", function(){
+ 
     beforeEach(function(){
 	loadFixtures('index.html');
-	canvas = $('#game')[0];
-	expect(canvas).toExist();
-
-	ctx = canvas.getContext('2d');
-	expect(ctx).toBeDefined();
-
-	
     });
-     
-it("Añade un objeto al tablero", function(){
-	spyOn(GameBoard, "add");
-    var miboard = new GameBoard();
-    miboard.Objects =[];
-	
+
+    it("incluye jQuery", function(){
+	expect($).toBeDefined();
+    });
+
+    it("contiene div", function(){
+	expect( $("div#container") ).toExist();
+    });
     
+    
+    
+    it("Existe GameBoard?", function(){
+      
+      expect(GameBoard).toBeDefined();
+    });
+    
+    var tablero = new GameBoard();
+    
+    it("Esta vacio al principio?", function(){
+      expect(tablero.Objets).toEqual();
+    });
+    
+    
+	
+    it("Añade Bien?", function(){
+	spyOn(tablero, "add").andCallThrough();
 
-   
-	miboard.add(ship: { sx: 0, sy: 0, w: 37, h: 42, frames: 1 });
-      waits(1);
-
-	   expect(miboard.Objects).toequal(ship);
-
+	waits(10);
+	
+	
+	tablero.add({
+	    ship: { sx: 0, sy: 0, w: 37, h: 42, frames: 1 },
 	});
 	
-
+       runs(function(){ expect(tablero.Objets);
+       });
+	  
+    });
     
-});
+    it("Borra Bien?", function(){
+	spyOn(tablero, "remove").andCallThrough();
 
+	waits(10);
+	
+	tablero.resetRemoved();
+	tablero.finalizeRemoved();
+	
+	runs(function(){ expect(tablero.Objets).toEqual();
+       });
+	
+	});
+    });	  
+    
+   
+    
+
+	
+    
+     
