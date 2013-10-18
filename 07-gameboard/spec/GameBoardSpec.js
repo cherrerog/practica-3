@@ -87,7 +87,7 @@ describe ("Clase GameBoard", function(){
     
 	
     it("Añade Bien?", function(){
-	spyOn(tablero, "add").andCallThrough();
+	spyOn(tablero, "add");
 
 	waits(10);
 	
@@ -102,7 +102,7 @@ describe ("Clase GameBoard", function(){
     });
     
     it("Borra Bien?", function(){
-	spyOn(tablero, "remove").andCallThrough();
+	spyOn(tablero, "remove");
 
 	waits(10);
 	
@@ -113,7 +113,33 @@ describe ("Clase GameBoard", function(){
        });
 	
 	});
-    });	  
+    
+    it("draw + step",function(){
+      spyOn(tablero,"step").andCallThrough();
+      spyOn(tablero,"draw").andCallThrough();
+     
+      tablero.step(1);
+      tablero.draw();
+      
+      waits(10);
+      
+      expect(tablero.draw).toHaveBeenCalled();
+      
+      expect(tablero.step).toHaveBeenCalled();
+      
+      
+      
+      
+      
+     /* GameBoard.step(1);
+      GameBoard.draw(tablero);*/
+    });
+      
+    
+    
+});	  
+
+   
     
    
     
