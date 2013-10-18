@@ -128,13 +128,12 @@ describe ("Clase GameBoard", function(){
       expect(tablero.step).toHaveBeenCalled();
       
       
-      
-      
-      
      /* GameBoard.step(1);
       GameBoard.draw(tablero);*/
     });
       
+    it("Se solapan los objetos?",function(){
+      tablero.collide(
     
     
 });	  
