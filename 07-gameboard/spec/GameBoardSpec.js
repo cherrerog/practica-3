@@ -119,11 +119,11 @@ describe ("Clase GameBoard", function(){
       spyOn(tablero,"draw").andCallThrough();
      
       tablero.step(1);
-      tablero.draw();
+      /*tablero.draw();*/
       
       waits(10);
       
-      expect(tablero.draw).toHaveBeenCalled();
+      /*expect(tablero.draw).toHaveBeenCalled();*/
       
       expect(tablero.step).toHaveBeenCalled();
       
@@ -132,9 +132,7 @@ describe ("Clase GameBoard", function(){
       GameBoard.draw(tablero);*/
     });
       
-    it("Se solapan los objetos?",function(){
-      tablero.collide(
-    
+   
     
 });	  
 
