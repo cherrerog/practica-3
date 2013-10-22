@@ -183,6 +183,7 @@ var GameBoard = function() {
     // se modifica objects.
 
     // Marcar un objeto para borrar
+    this.removed = [];//Añadido X MI !!Cuidado¡¡¡
     this.remove = function(obj) { 
 	this.removed.push(obj); 
     };

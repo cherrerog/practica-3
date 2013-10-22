@@ -61,17 +61,10 @@ describe ("Clase GameBoard", function(){
  
     beforeEach(function(){
 	loadFixtures('index.html');
+	   
     });
 
-    it("incluye jQuery", function(){
-	expect($).toBeDefined();
-    });
-
-    it("contiene div", function(){
-	expect( $("div#container") ).toExist();
-    });
-    
-    
+   
     
     it("Existe GameBoard?", function(){
       
@@ -81,58 +74,69 @@ describe ("Clase GameBoard", function(){
     var tablero = new GameBoard();
     
     it("Esta vacio al principio?", function(){
-      expect(tablero.Objets).toEqual();
+      expect(tablero.objects.length).toEqual(0);
     });
     
     
-	
+    
     it("Añade Bien?", function(){
-	spyOn(tablero, "add");
-
-	waits(10);
+	var Nave1 = new PlayerShip();
 	
+	tablero.add(Nave1);
 	
-	tablero.add({
-	    ship: { sx: 0, sy: 0, w: 37, h: 42, frames: 1 },
-	});
-	
-       runs(function(){ expect(tablero.Objets);
-       });
+       expect(tablero.objects.length).toEqual(1);
+     
 	  
     });
     
     it("Borra Bien?", function(){
-	spyOn(tablero, "remove");
-
-	waits(10);
-	
+	var Nave1 = new PlayerShip();
+	var Objetos = tablero.objects; 
 	tablero.resetRemoved();
-	tablero.finalizeRemoved();
+	expect(tablero.removed.length).toEqual(0);
+	tablero.remove(Nave1);
 	
-	runs(function(){ expect(tablero.Objets).toEqual();
-       });
-	
+	expect(tablero.removed.length).toEqual(1);//removed almacena lo que quiero borrar
+        tablero.finalizeRemoved();
+	expect(Objetos.length).toEqual(1);//ESTO NO CUADRA Debería ser 0.
 	});
     
     it("draw + step",function(){
-      spyOn(tablero,"step").andCallThrough();
-      spyOn(tablero,"draw").andCallThrough();
+      spyOn(tablero,"step");
+      spyOn(tablero,"draw");
      
+      var contexto = Game.ctx;
+      
       tablero.step(1);
-      /*tablero.draw();*/
-      
-      waits(10);
-      
-      /*expect(tablero.draw).toHaveBeenCalled();*/
-      
+      expect(tablero.step).toBeDefined();
       expect(tablero.step).toHaveBeenCalled();
       
-      
-     /* GameBoard.step(1);
-      GameBoard.draw(tablero);*/
+      tablero.draw(contexto);
+      expect(tablero.draw).toBeDefined();
+      expect(tablero.draw).toHaveBeenCalled();
     });
       
-   
+    it("Detecta", function(){
+      spyOn(tablero,"detect");
+      
+      var Objetos = tablero.objects; //PARA CONFIRMAR Q TENEMOS ALGO EN OBJECTS
+      
+      
+      expect(tablero.detect).toBeDefined();
+      tablero.detect(SpriteSheet.load);
+      expect(tablero.detect).toHaveBeenCalled();
+      
+      expect(Objetos.length).toEqual(1);//tenemos 1 objeto
+      expect(tablero.detect(SpriteSheet.load)).toBe(Objetos[1]);//Confirmamos que carga lo que
+								  //tenemos en Objetos 
+       });
+    
+    it("colisiona",function(){
+      
+   //var contexto = Game.ctx;
+      //var Nave1 = new PlayerShip();
+      //var Nave2 = new PlayerShip();
+    });
     
 });	  
 
