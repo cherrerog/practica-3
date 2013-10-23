@@ -251,6 +251,8 @@ var GameBoard = function() {
     // Encontrar el primer objeto de tipo type que colisiona con obj
     // Si se llama sin type, en contrar el primer objeto de cualquier
     // tipo que colisiona con obj
+    
+    
     this.collide = function(obj,type) {
 	return this.detect(function() {
 	    if(obj != this) {

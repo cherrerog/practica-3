@@ -137,10 +137,11 @@ describe ("Clase GameBoard", function(){
    //var contexto = Game.ctx;
       var Nave1 = new PlayerShip();
       //var Nave2 = new PlayerShip();
+     
       tablero.collide(Nave1);
       expect(tablero.collide).toBeDefined();
       expect(tablero.collide).toHaveBeenCalled();
-      
+   
       //Parece que va bien
       
     });
